@@ -51,6 +51,10 @@ export class AnalysisRepository {
                 avgSustainability: { $avg: '$recommendation.sustainabilityScore' }
               }
             }
+          ],
+          wrongProduct: [
+            { $match: { wrongProduct: true } },
+            { $count: 'count' }
           ]
         }
       }
@@ -80,12 +84,14 @@ export class AnalysisRepository {
     const valueAndSustainability = result.valueAndSustainability[0] || {};
     const totalEstimatedValue = valueAndSustainability.totalValue || 0;
     const averageSustainabilityScore = valueAndSustainability.avgSustainability || 0;
+    const wrongProductCount = result.wrongProduct[0]?.count || 0;
 
     return {
       totalItems,
       actionBreakdown,
       totalEstimatedValue,
       averageSustainabilityScore: Math.round(averageSustainabilityScore * 100) / 100,
+      wrongProductCount,
     };
   }
 

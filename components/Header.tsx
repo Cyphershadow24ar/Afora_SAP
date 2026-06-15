@@ -29,6 +29,12 @@ export function Header() {
           >
             Dashboard
           </Link>
+          <Link
+            href="/coming-soon"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-amazon-orange transition-colors"
+          >
+            Coming Soon
+          </Link>
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"

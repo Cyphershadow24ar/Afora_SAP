@@ -125,7 +125,7 @@ export default function DashboardPage() {
         </div>
 
         {/* KPI Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white dark:bg-amazon-dark rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-amazon-orange/10 dark:bg-amazon-orange/20 rounded-xl flex items-center justify-center">
@@ -168,6 +168,23 @@ export default function DashboardPage() {
               <span className="text-2xl font-bold text-green-600 dark:text-green-400">
                 {stats.averageSustainabilityScore.toFixed(0)}
               </span>
+            </div>
+          </div>
+
+          <div className="bg-white dark:bg-amazon-dark rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
+                <svg className="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01M5.07 19h13.86a2 2 0 001.74-2.99l-6.93-12a2 2 0 00-3.48 0l-6.93 12A2 2 0 005.07 19z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Wrong Product Detected</div>
+                <div className="text-3xl font-bold text-red-600 dark:text-red-400">{stats.wrongProductCount}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">
+                  {stats.totalItems > 0 ? ((stats.wrongProductCount / stats.totalItems) * 100).toFixed(1) : '0.0'}% rate
+                </div>
+              </div>
             </div>
           </div>
         </div>

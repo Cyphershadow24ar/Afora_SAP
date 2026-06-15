@@ -1,6 +1,12 @@
 // Task 5.2: MockBedrockService with deterministic mock logic
 import { IAIAnalysisService } from './IAIAnalysisService';
-import { AIAnalysisResult, ProductContext, ConditionGrade } from '@/lib/types';
+import {
+  AIAnalysisResult,
+  ProductContext,
+  ConditionGrade,
+  ReturnInspection,
+  DamageSeverity,
+} from '@/lib/types';
 
 export class MockBedrockService implements IAIAnalysisService {
   // Base confidence scores by category
@@ -123,5 +129,61 @@ export class MockBedrockService implements IAIAnalysisService {
 
   private delay(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  // Second-Life inspection (mock): deterministic product-match + visual inspection.
+  async inspectReturn(
+    _originalImageUrl: string | undefined,
+    imageUrls: string[],
+    productContext: ProductContext
+  ): Promise<ReturnInspection> {
+    await this.delay(100 + Math.random() * 200);
+
+    const baseConfidence = this.categoryConfidence[productContext.category] || 80;
+    const confidenceScore = Math.min(100, Math.max(0, baseConfidence + (Math.random() * 20 - 10)));
+    const condition = this.getConditionGrade(confidenceScore);
+
+    const issues =
+      condition === 'Excellent'
+        ? []
+        : this.selectRandomDefects(productContext.category, 1 + Math.floor(Math.random() * 2));
+
+    const damageSeverity = this.severityForGrade(condition);
+
+    // Mock match: assume returned matches reference with high similarity.
+    const similarityScore = Math.round(85 + Math.random() * 12);
+
+    return {
+      productMatch: {
+        isSameProduct: similarityScore >= 60,
+        similarityScore,
+        confidence: Math.round(confidenceScore),
+        reason:
+          similarityScore >= 60
+            ? 'Returned product matches the reference product.'
+            : 'Returned product does not match the reference product.',
+      },
+      visualInspection: {
+        condition,
+        damageSeverity,
+        confidence: Math.round(confidenceScore),
+        issues,
+      },
+    };
+  }
+
+  private severityForGrade(grade: ConditionGrade): DamageSeverity {
+    switch (grade) {
+      case 'Excellent':
+        return 'None';
+      case 'Good':
+        return 'Low';
+      case 'Fair':
+        return 'Medium';
+      case 'Poor':
+        return 'High';
+      case 'Damaged':
+        return 'Severe';
+    }
   }
 }

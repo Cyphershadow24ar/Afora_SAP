@@ -5,7 +5,7 @@ import DatabaseService from '@/lib/db/connection';
 import { ProductRepository } from '@/lib/db/repositories/ProductRepository';
 import { AnalysisRepository } from '@/lib/db/repositories/AnalysisRepository';
 import { ServiceFactory } from '@/lib/services/ServiceFactory';
-import { RecommendationEngine } from '@/lib/services/RecommendationEngine';
+import { SecondLifeEngine } from '@/lib/services/SecondLifeEngine';
 
 const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
@@ -109,18 +109,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Call AI Analysis Service
+    // Phase 1-2: AI inspection (product match + advanced visual inspection)
     const aiService = ServiceFactory.getAIService();
-    let aiAnalysis;
+    let inspection;
     try {
-      aiAnalysis = await aiService.analyzeImages(imageUrls, {
+      inspection = await aiService.inspectReturn(product.originalImageUrl, imageUrls, {
         productName: product.productName,
         brand: product.brand,
         category: product.category,
         originalPrice: product.originalPrice,
+        originalImageUrl: product.originalImageUrl,
       });
     } catch (error) {
-      console.error('AI analysis error:', error);
+      console.error('AI inspection error:', error);
       return NextResponse.json(
         {
           success: false,
@@ -130,12 +131,68 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Generate recommendation
-    const recommendationEngine = new RecommendationEngine();
-    const recommendation = recommendationEngine.generateRecommendation(aiAnalysis, product);
-
-    // Save Analysis Record to MongoDB
+    const { productMatch, visualInspection } = inspection;
     const analysisRepo = new AnalysisRepository(db);
+
+    // Phase 1 rejection: returned product does not match the reference product.
+    if (productMatch.similarityScore < 60) {
+      const aiAnalysis = {
+        conditionGrade: visualInspection.condition,
+        confidenceScore: visualInspection.confidence,
+        defectsDetected: visualInspection.issues,
+        analysisSummary: `Product-match validation failed (similarity ${productMatch.similarityScore}%). ${productMatch.reason}`,
+      };
+      const recommendation = {
+        action: 'Manual Review' as const,
+        reasoning:
+          'Returned product does not match the reference product. Routed to manual review (possible wrong item).',
+        estimatedValue: 0,
+        sustainabilityScore: 0,
+      };
+
+      let rejectedId: string;
+      try {
+        const created = await analysisRepo.create({
+          barcode: product.barcode,
+          productId: product.productId,
+          productName: product.productName,
+          category: product.category,
+          originalPrice: product.originalPrice,
+          imageUrls,
+          aiAnalysis,
+          recommendation,
+          productMatch,
+          visualInspection,
+          wrongProduct: true,
+        });
+        rejectedId = created._id!.toString();
+      } catch (error) {
+        console.error('Database save error:', error);
+        return NextResponse.json(
+          { success: false, error: 'Failed to save analysis. Please try again.' },
+          { status: 500 }
+        );
+      }
+
+      return NextResponse.json(
+        {
+          success: true,
+          analysisId: rejectedId,
+          wrongProduct: true,
+          productMatch,
+          visualInspection,
+          analysis: aiAnalysis,
+          recommendation,
+        },
+        { status: 200 }
+      );
+    }
+
+    // Phases 3-6: deterministic Second-Life decision (costs, markets, paths, best).
+    const engine = new SecondLifeEngine();
+    const decision = engine.decide(product, visualInspection, productMatch);
+
+    // Save complete Analysis Record to MongoDB
     let analysisId: string;
     try {
       const created = await analysisRepo.create({
@@ -145,8 +202,15 @@ export async function POST(req: NextRequest) {
         category: product.category,
         originalPrice: product.originalPrice,
         imageUrls,
-        aiAnalysis,
-        recommendation,
+        aiAnalysis: decision.aiAnalysis,
+        recommendation: decision.recommendation,
+        productMatch,
+        visualInspection,
+        costEstimate: decision.costEstimate,
+        marketValue: decision.marketValue,
+        nextLifeOptions: decision.nextLifeOptions,
+        bestRecommendation: decision.bestRecommendation,
+        wrongProduct: false,
       });
       // Use the authoritative MongoDB _id as the analysis id
       analysisId = created._id!.toString();
@@ -161,13 +225,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Return success with analysis ID and results
+    // Return success with full Second-Life decision
     return NextResponse.json(
       {
         success: true,
         analysisId,
-        analysis: aiAnalysis,
-        recommendation,
+        wrongProduct: false,
+        productMatch,
+        visualInspection,
+        analysis: decision.aiAnalysis,
+        recommendation: decision.recommendation,
+        costEstimate: decision.costEstimate,
+        marketValue: decision.marketValue,
+        nextLifeOptions: decision.nextLifeOptions,
+        bestRecommendation: decision.bestRecommendation,
       },
       { status: 200 }
     );

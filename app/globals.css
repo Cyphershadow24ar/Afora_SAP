@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F8FAFC;
-  --foreground: #111827;
+  /* Warm, light Amazon-inspired tone */
+  --background: #FBF6EF;
+  --foreground: #1B1A17;
   --amazon-orange: 255 153 0;
   --amazon-dark: 35 47 62;
   --amazon-bg: 19 26 34;
@@ -18,6 +19,11 @@
   --color-amazon-dark: rgb(var(--amazon-dark));
   --color-amazon-bg: rgb(var(--amazon-bg));
   --color-aws-blue: rgb(var(--aws-blue));
+  /* Warm the light-mode neutral surfaces (used as page background / soft cards
+     and hover states). Cards remain white, giving an Amazon-style warm-light look.
+     Dark mode uses the amazon-* navy tokens, so these only affect light mode. */
+  --color-gray-50: #FBF6EF;
+  --color-gray-100: #F4EADD;
 }
 
 .dark {

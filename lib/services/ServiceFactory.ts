@@ -1,8 +1,10 @@
 // Task 4.4 & 5.4: ServiceFactory for storage and AI service selection
 import { IStorageService } from './storage/IStorageService';
 import { MockStorageService } from './storage/MockStorageService';
+import { S3StorageService } from './storage/S3StorageService';
 import { IAIAnalysisService } from './ai/IAIAnalysisService';
 import { MockBedrockService } from './ai/MockBedrockService';
+import { BedrockService } from './ai/BedrockService';
 
 export class ServiceFactory {
   private static storageService: IStorageService | null = null;
@@ -11,13 +13,13 @@ export class ServiceFactory {
   static getStorageService(): IStorageService {
     if (!this.storageService) {
       const useMock = process.env.USE_MOCK_STORAGE !== 'false';
-      
+
       if (useMock) {
         console.log('📦 Using MockStorageService');
         this.storageService = new MockStorageService();
       } else {
-        // Task 4.3 skipped per instructions - would initialize S3StorageService here
-        throw new Error('Real S3 storage service not implemented in this build');
+        console.log('🪣 Using S3StorageService');
+        this.storageService = new S3StorageService();
       }
     }
     return this.storageService;
@@ -26,13 +28,13 @@ export class ServiceFactory {
   static getAIService(): IAIAnalysisService {
     if (!this.aiService) {
       const useMock = process.env.USE_MOCK_BEDROCK !== 'false';
-      
+
       if (useMock) {
         console.log('🤖 Using MockBedrockService');
         this.aiService = new MockBedrockService();
       } else {
-        // Task 5.3 skipped per instructions - would initialize BedrockService here
-        throw new Error('Real Bedrock service not implemented in this build');
+        console.log('🤖 Using BedrockService (Amazon Nova)');
+        this.aiService = new BedrockService();
       }
     }
     return this.aiService;

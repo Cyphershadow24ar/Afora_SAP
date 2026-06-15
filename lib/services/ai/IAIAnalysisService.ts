@@ -1,13 +1,19 @@
-// Task 5.1: IAIAnalysisService interface and related types
-import { AIAnalysisResult, ProductContext } from '@/lib/types';
+// IAIAnalysisService interface and related types
+import { AIAnalysisResult, ProductContext, ReturnInspection } from '@/lib/types';
 
 export interface IAIAnalysisService {
+  // Legacy single-pass condition analysis (kept for backward compatibility).
   analyzeImages(imageUrls: string[], productContext: ProductContext): Promise<AIAnalysisResult>;
-}
 
-// FUTURE (BedrockService): a real implementation will additionally accept the
-// product's originalImageUrl (reference/new-condition image) to perform
-// original-vs-returned comparison — damage comparison, missing component
-// detection, and cosmetic defect detection. The interface signature is left
-// unchanged for now; this comment only documents the planned architecture.
-// Comparison logic is intentionally NOT implemented yet.
+  // Second-Life Decision Engine inspection (Phases 1-2):
+  //   - Phase 1: product-match validation (original reference vs returned images)
+  //   - Phase 2: advanced visual inspection (scratches, dents, cracks, missing
+  //     parts/accessories, packaging damage, dirt, water damage, functional risk)
+  // Returns machine-readable ProductMatch + VisualInspection. Downstream financial
+  // path calculations are performed deterministically by the SecondLifeEngine.
+  inspectReturn(
+    originalImageUrl: string | undefined,
+    returnedImageUrls: string[],
+    productContext: ProductContext
+  ): Promise<ReturnInspection>;
+}
