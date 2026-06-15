@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Sustainable Living: A Practical Guide reference image">
+  <rect width="600" height="400" fill="#FBEFE3"/>
+  <rect x="16" y="16" width="568" height="368" rx="20" fill="#ffffff"/>
+  <g fill="none" stroke="#E07B39" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M210 140 q45 -18 90 0 v100 q-45 -18 -90 0 z"/><path d="M390 140 q-45 -18 -90 0 v100 q45 -18 90 0 z"/></g>
+  <rect x="232" y="60" width="136" height="26" rx="13" fill="#E07B39"/>
+  <text x="300" y="78" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">BOOKS</text>
+  <text x="300" y="312" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">Sustainable Living: A</text><text x="300" y="342" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">Practical Guide</text>
+  <text x="300" y="380" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#E07B39">GreenPublishing</text>
+</svg>

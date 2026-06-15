@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F8FAFC;
+  --foreground: #111827;
+  --amazon-orange: 255 153 0;
+  --amazon-dark: 35 47 62;
+  --amazon-bg: 19 26 34;
+  --aws-blue: 20 110 180;
 }
 
 @theme inline {
@@ -10,17 +14,50 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-amazon-orange: rgb(var(--amazon-orange));
+  --color-amazon-dark: rgb(var(--amazon-dark));
+  --color-amazon-bg: rgb(var(--amazon-bg));
+  --color-aws-blue: rgb(var(--aws-blue));
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #131A22;
+  --foreground: #F9FAFB;
+}
+
+.text-amazon-orange {
+  color: rgb(var(--amazon-orange));
+}
+
+.bg-amazon-orange {
+  background-color: rgb(var(--amazon-orange));
+}
+
+.hover\:bg-amazon-orange:hover {
+  background-color: rgb(var(--amazon-orange));
+}
+
+.border-amazon-orange {
+  border-color: rgb(var(--amazon-orange));
+}
+
+.bg-amazon-dark {
+  background-color: rgb(var(--amazon-dark));
+}
+
+.bg-amazon-bg {
+  background-color: rgb(var(--amazon-bg));
+}
+
+.text-aws-blue {
+  color: rgb(var(--aws-blue));
+}
+
+.bg-aws-blue {
+  background-color: rgb(var(--aws-blue));
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Router Dual Band WiFi reference image">
+  <rect width="600" height="400" fill="#EAF3FB"/>
+  <rect x="16" y="16" width="568" height="368" rx="20" fill="#ffffff"/>
+  <g fill="none" stroke="#146EB4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="210" y="120" width="180" height="115" rx="10"/><line x1="270" y1="250" x2="330" y2="250"/><line x1="300" y1="235" x2="300" y2="250"/></g>
+  <rect x="232" y="60" width="136" height="26" rx="13" fill="#146EB4"/>
+  <text x="300" y="78" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">ELECTRONICS</text>
+  <text x="300" y="312" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">Router Dual Band WiFi</text>
+  <text x="300" y="350" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#146EB4">NetConnect</text>
+</svg>

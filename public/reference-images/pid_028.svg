@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Air Fryer 5 Quart reference image">
+  <rect width="600" height="400" fill="#E7F5EE"/>
+  <rect x="16" y="16" width="568" height="368" rx="20" fill="#ffffff"/>
+  <g fill="none" stroke="#2E8B57" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="240" y="135" width="100" height="105" rx="12"/><path d="M340 160 h22 a18 18 0 0 1 0 50 h-22"/><line x1="240" y1="135" x2="340" y2="135"/></g>
+  <rect x="232" y="60" width="136" height="26" rx="13" fill="#2E8B57"/>
+  <text x="300" y="78" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">HOME &amp; KITCHEN</text>
+  <text x="300" y="312" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">Air Fryer 5 Quart</text>
+  <text x="300" y="350" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#2E8B57">FryEasy</text>
+</svg>

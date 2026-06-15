@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Default product image">
+  <rect width="600" height="400" fill="#F3F4F6"/>
+  <rect x="16" y="16" width="568" height="368" rx="20" fill="#ffffff"/>
+  <g fill="none" stroke="#9CA3AF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><rect x="220" y="140" width="160" height="120" rx="10"/><path d="M240 250 l40 -40 a8 8 0 0 1 11 0 l30 30 l25 -25 a8 8 0 0 1 11 0 l23 23"/><circle cx="260" cy="175" r="10"/></g>
+  <text x="300" y="320" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#374151">Product Image</text>
+</svg>

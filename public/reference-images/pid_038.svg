@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" role="img" aria-label="Denim Jeans Classic Fit reference image">
+  <rect width="600" height="400" fill="#F2ECFC"/>
+  <rect x="16" y="16" width="568" height="368" rx="20" fill="#ffffff"/>
+  <g fill="none" stroke="#8B5CF6" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M250 130 l-40 30 l24 28 l16 -12 v74 h100 v-74 l16 12 l24 -28 l-40 -30 l-30 0 a20 14 0 0 1 -40 0 z"/></g>
+  <rect x="232" y="60" width="136" height="26" rx="13" fill="#8B5CF6"/>
+  <text x="300" y="78" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff">CLOTHING</text>
+  <text x="300" y="312" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#1f2937">Denim Jeans Classic Fit</text>
+  <text x="300" y="350" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#8B5CF6">DenimCo</text>
+</svg>
