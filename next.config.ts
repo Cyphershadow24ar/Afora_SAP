@@ -16,8 +16,9 @@ const securityHeaders = [
       // Next.js requires inline/eval for its runtime in production bundles
       "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
       "style-src 'self' 'unsafe-inline'",
-      // Allow base64 data URLs (mock image storage) and blob previews
-      "img-src 'self' data: blob:",
+      // Allow base64 data URLs (mock image storage), blob previews, and
+      // presigned Amazon S3 URLs (real storage mode) from any region.
+      "img-src 'self' data: blob: https://*.amazonaws.com",
       "font-src 'self' data:",
       "connect-src 'self'",
       "frame-ancestors 'self'",

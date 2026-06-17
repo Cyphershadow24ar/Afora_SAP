@@ -10,14 +10,6 @@ export default function Home() {
       <section className="relative overflow-hidden bg-gradient-to-br from-amazon-orange/10 via-white to-aws-blue/10 dark:from-amazon-dark dark:via-amazon-bg dark:to-amazon-dark py-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center space-y-8 max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amazon-orange/10 dark:bg-amazon-orange/20 rounded-full text-sm font-medium text-amazon-orange">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amazon-orange opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amazon-orange"></span>
-              </span>
-              Amazon HackOn Season 6 - AI Demo Platform
-            </div>
-
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
               AI-Powered Returns
               <span className="block text-amazon-orange">Intelligence Platform</span>
