@@ -6,7 +6,7 @@ Afora Returns turns the messy, manual problem of e-commerce product returns into
 
 LIVE WORKING LINK  : https://afora-sap.vercel.app/
 
-<br><br>
+<br>
 DEMO YOUTUBE LINK : https://www.youtube.com/watch?v=O1hqdpXeV_c
 
 ---
