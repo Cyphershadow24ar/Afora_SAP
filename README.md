@@ -9,8 +9,31 @@ LIVE WORKING LINK  : https://afora-sap.vercel.app/
 DEMO YOUTUBE LINK : https://www.youtube.com/watch?v=O1hqdpXeV_c
 
 ---
+## Screenshots
+
 ### 🏠 Landing Page
 ![Landing Page](screenshots/home_1.jpeg)
+
+### ✨ Platform Features Overview
+![Platform Features Overview](screenshots/home_2.jpeg)
+
+### 📦 Barcode Product Lookup
+![Barcode Product Lookup](screenshots/barcode.jpeg)
+
+### 📸 Return Item Image Upload
+![Return Item Image Upload](screenshots/upload_image.jpeg)
+
+### 🤖 AI Product Validation & Inspection
+![AI Product Validation & Inspection](screenshots/result.jpeg)
+
+### ♻️ Second-Life Recommendation Engine
+![Second-Life Recommendation Engine](screenshots/result_2.jpeg)
+
+### 📊 Detailed Cost, ROI & Sustainability Analysis
+![Detailed Cost, ROI & Sustainability Analysis](screenshots/result3.jpeg)
+
+### 📈 Analytics Dashboard
+![Analytics Dashboard](screenshots/dashboard.jpeg)
 
 ## Table of Contents
 
