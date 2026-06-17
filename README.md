@@ -9,6 +9,8 @@ LIVE WORKING LINK  : https://afora-sap.vercel.app/
 DEMO YOUTUBE LINK : https://www.youtube.com/watch?v=O1hqdpXeV_c
 
 ---
+### 🏠 Landing Page
+![Landing Page](screenshots/home_1.jpeg)
 
 ## Table of Contents
 
