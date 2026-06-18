@@ -325,33 +325,6 @@ Default model: `amazon.nova-lite-v1:0` (override with `BEDROCK_MODEL_ID`). Regio
 
 ---
 
-## Environment Variables
-
-Create `.env.local` (see `.env.example`):
-
-```bash
-# MongoDB
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/?retryWrites=true&w=majority
-MONGODB_DB_NAME=afora-returns
-
-# Service selection ("true" = mock/offline, "false" = real AWS)
-USE_MOCK_STORAGE=false
-USE_MOCK_BEDROCK=false
-
-# AWS (required when USE_MOCK_STORAGE=false)
-AWS_REGION=ap-south-1
-AWS_ACCESS_KEY_ID=your_access_key
-AWS_SECRET_ACCESS_KEY=your_secret_key
-S3_BUCKET_NAME=afora-returns-images-2026
-
-# Bedrock (required when USE_MOCK_BEDROCK=false)
-BEDROCK_MODEL_ID=amazon.nova-lite-v1:0
-```
-
-> If a credential contains reserved URI characters (e.g. `@`), percent-encode them (`@` → `%40`) in `MONGODB_URI`.
-
----
-
 ## Getting Started
 
 ```bash
